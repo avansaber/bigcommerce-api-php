@@ -84,6 +84,18 @@ class Client
     }
 
     /**
+     * getCatalogResource is used for getting resource from new Catlog API
+     *    
+     */
+    public static function getCatalogResource($path, $resource = 'Resource')
+    {   
+        $catlog_api_path = str_replace('v2', 'v3', self::$api_path);        
+        $response = self::connection()->get($catlog_api_path . $path);
+
+        return self::mapResource($resource, $response);
+    }
+
+    /**
      * Configure the API client with the required OAuth credentials.
      *
      * Requires a settings array to be passed in with the following keys:
